@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BuildAppsTestTask.ViewModels"
+             xmlns:models="clr-namespace:BuildAppsTestTask.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BuildAppsTestTask.Views.Tab1"
+             Title="Tab1"
+             x:DataType="vm:Tab1ViewModel">
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadProfilesCommand}"/>
+    </ContentPage.Behaviors>
+
+    <CollectionView ItemsSource="{Binding Profiles}" ItemSizingStrategy="MeasureAllItems">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Profile">
+                <Grid RowDefinitions="80, 1" ColumnDefinitions="Auto, *">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:Tab1ViewModel}}, Path=ProfileTappedCommand}"
+                                              CommandParameter="{Binding .}"/>
+                    </Grid.GestureRecognizers>
+                    
+                    <Image Margin="20,10" Source="{Binding ImageUrl}"/>
+                    
+                    <StackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="{Binding FirstName}" Margin="20, 0"/>
+                        <Label Text="{Binding LastName}" Margin="20, 0"/>
+                    </StackLayout>
+                    
+                    <BoxView Grid.ColumnSpan="2" Grid.Row="1" Color="Purple" HeightRequest="1" VerticalOptions="End"/>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.Footer>
+            <!-- TODO: Move strings to resources -->
+            <Button Command="{Binding OpenNewPageCommand}" Text="Open new page" Margin="40, 20"/>
+        </CollectionView.Footer>
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BuildAppsTestTask.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BuildAppsTestTask.Views.Tab2"
+             Title="Tab2"
+             x:DataType="{x:Type vm:Tab2ViewModel}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsNullConverter x:Key="IsNullConverter" />
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <Grid IsVisible="{Binding SelectedProfile, Converter={x:StaticResource IsNullConverter}}">
+            <!-- TODO: Move strings to resources -->
+            <Label 
+                Text="Profile is not selected"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </Grid>
+
+        <VerticalStackLayout Spacing="20" HorizontalOptions="Center" IsVisible="{Binding SelectedProfile, Converter={x:StaticResource IsNotNullConverter}}">
+            <Image HeightRequest="180" Source="{Binding SelectedProfile.ImageUrl}"/>
+            
+            <Label Text="{Binding SelectedProfile.FirstName}"/>
+
+            <Label Text="{Binding SelectedProfile.LastName}"/>
+
+            <Label Text="{Binding SelectedProfile.PhoneNumber}"/>
+            
+            <Label Text="{Binding SelectedProfile.Gender}"/>
+
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

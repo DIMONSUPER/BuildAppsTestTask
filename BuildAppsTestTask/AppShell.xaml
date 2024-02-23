@@ -3,13 +3,19 @@
     x:Class="BuildAppsTestTask.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:BuildAppsTestTask"
+    xmlns:views="clr-namespace:BuildAppsTestTask.Views"
+    xmlns:constants="clr-namespace:BuildAppsTestTask"
     Shell.FlyoutBehavior="Disabled"
     Title="BuildAppsTestTask">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!-- TODO: move strings to resources -->
+    
+    <Tab Title="Tab 1">
+        <ShellContent ContentTemplate="{DataTemplate views:Tab1}" Route="tab1"/>
+    </Tab>
 
+    <Tab Title="Tab 2">
+        <ShellContent ContentTemplate="{DataTemplate views:Tab2}" Route="tab2"/>
+    </Tab>
+    
 </Shell>

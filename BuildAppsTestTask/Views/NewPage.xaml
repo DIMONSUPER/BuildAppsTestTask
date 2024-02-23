@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BuildAppsTestTask.ViewModels"
+             xmlns:models="clr-namespace:BuildAppsTestTask.Models"
+             x:Class="BuildAppsTestTask.Views.NewPage"
+             Title="NewPage"
+             x:DataType="vm:NewPageViewModel">
+
+    <Grid>
+        <ScrollView VerticalOptions="Start" Padding="20,20,0,20" Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Profiles}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:Profile">
+                        <StackLayout Orientation="Vertical" Margin="0,0,20,0">
+                            <Image HeightRequest="40" Source="{Binding ImageUrl}"/>
+                            <Label Text="{Binding FirstName}" HorizontalOptions="Center"/>
+                            <Label Text="{Binding LastName}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
