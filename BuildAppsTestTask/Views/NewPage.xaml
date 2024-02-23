@@ -7,9 +7,14 @@
              Title="NewPage"
              x:DataType="vm:NewPageViewModel">
 
-    <Grid>
-        <ScrollView VerticalOptions="Start" Padding="20,20,0,20" Orientation="Horizontal">
-            <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Profiles}">
+    <Grid x:Name="grid">
+        <Grid.GestureRecognizers>
+            <PinchGestureRecognizer PinchUpdated="PinchGestureRecognizer_PinchUpdated" />
+        </Grid.GestureRecognizers>
+        <ScrollView HorizontalScrollBarVisibility="Never" x:Name="scrollView" VerticalOptions="Start" Orientation="Horizontal">
+
+            <StackLayout Padding="20,20,0,20" x:Name="zoomFrame" Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Profiles}">
+
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="models:Profile">
                         <StackLayout Orientation="Vertical" Margin="0,0,20,0">
